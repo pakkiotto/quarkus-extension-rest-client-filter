@@ -1,0 +1,3 @@
+it/cparisi/pakkiotto/extension/runtime/Log.class
+it/cparisi/pakkiotto/extension/runtime/GreetingExtensionServlet.class
+it/cparisi/pakkiotto/extension/runtime/LoggingInterceptor.class
