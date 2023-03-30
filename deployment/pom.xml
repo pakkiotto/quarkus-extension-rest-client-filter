@@ -5,7 +5,7 @@
   <parent>
     <groupId>it.cparisi</groupId>
     <artifactId>pakkiotto-extension-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>pakkiotto-extension-deployment</artifactId>
   <name>Pakkiotto Extension - Deployment</name>
@@ -13,10 +13,6 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc-deployment</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-undertow-deployment</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

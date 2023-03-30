@@ -1,9 +1,11 @@
 package it.cparisi.pakkiotto.extension.runtime;
 
+import io.quarkus.arc.Priority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
+import javax.inject.Singleton;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
@@ -14,16 +16,21 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 @Provider
+@Singleton
+@Priority(1)
 public class TransactionFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
-    private final static Logger LOG = LoggerFactory.getLogger("Application filter");
+    private final static Logger LOG = LoggerFactory.getLogger("Extension filter");
     private final static Supplier<String> RANDOM_UUID_SUPPLIER = () -> UUID.randomUUID().toString();
+
+    public TransactionFilter() {
+    }
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
         LOG.info("start filter");
         var transactionId = containerRequestContext.getHeaderString("X-transactionId");
-        if (transactionId != null || transactionId.trim().isEmpty()) {
+        if (transactionId == null || transactionId.trim().isEmpty()) {
             LOG.info("Generate new transactionId");
             MDC.put("transactionId", RANDOM_UUID_SUPPLIER.get());
         } else {
